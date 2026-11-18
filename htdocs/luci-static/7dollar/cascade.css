@@ -566,12 +566,22 @@ body.modal-overlay-active .modal{transform:none;transition-duration:var(--base)}
 }
 #view>.table{display:table;border-collapse:separate;border-spacing:0;background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:10px 14px;margin-bottom:18px}
 
-/* logs, graphs, misc */
+/* ============================== logs, graphs, misc ============================== */
 #syslog{width:100%;min-height:60vh;font-size:12.5px;background:var(--surface);border:1px solid var(--line-soft);color:var(--ink);border-radius:var(--r-md)}
 [data-theme=dark] [data-page=admin-statistics-graphs] [data-plugin] img{filter:invert(100%) hue-rotate(150deg)}
 [data-page^=admin-status-realtime] #view svg line[style],[data-page=admin-status-channel_analysis] #view svg line[style]{stroke:var(--line)!important}
-[data-page^=admin-status-realtime] #view div[style*="background"],[data-page=admin-status-channel_analysis] #view div[style*="background"]{background:var(--surface)!important;border-radius:var(--r-md)}
-[data-page^=admin-status-realtime] #view svg text,[data-page=admin-status-channel_analysis] #view svg text{fill:var(--ink-3)}
+[data-page^=admin-status-realtime] #view div[style*="background"],[data-page=admin-status-channel_analysis] #view div[style*="background"]{background:var(--surface)!important;border-color:var(--line-soft)!important;border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+[data-page^=admin-status-realtime] #view svg text,[data-page=admin-status-channel_analysis] #view svg text{fill:var(--ink-3);font:500 11.5px var(--sans)!important;text-shadow:none!important}
+/* channel_analysis.js sizes every band's SVG on initial render via offsetWidth; display:none on inactive tabs makes 5G/6G width 0 */
+[data-page=admin-status-channel_analysis] [data-tab-title]:not([data-tab-active=true]){display:block;height:0;overflow:hidden;visibility:hidden;pointer-events:none}
+[data-page=admin-status-channel_analysis] #view svg>g>text{fill:var(--ink-3)!important}
+[data-page=admin-status-channel_analysis] #view svg g g text{paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round;font-weight:600!important}
+[data-page=admin-status-channel_analysis] #view svg polyline{stroke-width:1.75!important;stroke-linejoin:round;stroke-linecap:round}
+[data-page=admin-status-channel_analysis] .cbi-title-section{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+[data-page=admin-status-channel_analysis] .cbi-title-section h2{margin:0}
+[data-page=admin-status-channel_analysis] [data-tab]>br{display:none}
+[data-page=admin-status-channel_analysis] #channel_graph{margin-bottom:18px}
+[data-page=admin-status-channel_analysis] .table{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:6px 12px;border-collapse:separate}
 #applyreboot-section{line-height:300%}
 /* diagnostics: LuCI spaces host + action with an inline 5px margin sized for its own, shorter controls */
 [data-page=admin-network-diagnostics] .td>input{display:block;width:100%;margin:0 0 8px!important}
